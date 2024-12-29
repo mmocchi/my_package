@@ -21,11 +21,17 @@ tasks:
     cmds:
       - uv run ruff check src tests
 
+  lint-importlinter:
+    desc: コードの依存関係のチェック
+    cmds:
+      - uv run lint-imports
+
   lint:
     desc: コードの静的解析
     cmds:
       - task lint-mypy
       - task lint-ruff
+      - task lint-importlinter
 
   test:
     desc: テストの実行

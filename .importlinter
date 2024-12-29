@@ -1,0 +1,18 @@
+[importlinter]
+root_package = my_package
+
+
+[importlinter:contract:1]
+name = utilsから他パッケージへの参照を禁止
+type = forbidden
+source_modules = my_package.utils
+forbidden_modules = 
+    my_package.moduleA
+    my_package.moduleB
+
+
+[importlinter:contract:2]
+name = moduleAからmoduleBへの依存を禁止
+type = forbidden
+source_modules = my_package.moduleA
+forbidden_modules = my_package.moduleB
