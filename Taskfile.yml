@@ -1,0 +1,33 @@
+version: '3'
+
+tasks:
+  default:
+    cmds:
+      - task --list
+
+  format:
+    desc: コードのフォーマット
+    cmds:
+      - uv run ruff format src tests
+
+  lint-mypy:
+    desc: コードの型チェック
+    cmds:
+      - uv run mypy src
+      - uv run mypy tests
+
+  lint-ruff:
+    desc: コードの静的解析
+    cmds:
+      - uv run ruff check src tests
+
+  lint:
+    desc: コードの静的解析
+    cmds:
+      - task lint-mypy
+      - task lint-ruff
+
+  test:
+    desc: テストの実行
+    cmds:
+      - uv run pytest tests --cov=src --cov-report=term-missing --cov-branch

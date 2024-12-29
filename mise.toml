@@ -1,0 +1,5 @@
+[tools]
+pre-commit = "latest"
+python = "latest"
+task = "latest"
+uv = "latest"

@@ -1,0 +1,33 @@
+{
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.organizeImports.ruff": true,
+          "source.fixAll.ruff": true,
+        },
+        "editor.defaultFormatter": "charliermarsh.ruff"
+      },
+      "python.defaultInterpreterPath": "${workspaceFolder}/src/.venv/bin/python",
+      "ruff.path": [
+        "${workspaceFolder}/.venv/bin/ruff"
+      ],
+      "ruff.lint.args": [
+        "--config=${workspaceFolder}/pyproject.toml",
+      ],
+      "python.analysis.autoImportCompletions": true,
+      "python.analysis.completeFunctionParens": true,
+      "python.analysis.extraPaths": [
+        "${workspaceFolder}/.venv/lib/python3.13/site-packages/",
+        "${workspaceFolder}/src/"
+      ],
+      "python.autoComplete.extraPaths": [
+        "${workspaceFolder}/.venv/lib/python3.13/site-packages/",
+        "${workspaceFolder}/src/"
+      ],
+      "python.testing.pytestArgs": [
+        "tests"
+      ],
+      "python.testing.unittestEnabled": false,
+      "python.testing.pytestEnabled": true,
+      "mypy.dmypyExecutable": "${workspaceFolder}/.venv/bin/dmypy"
+}
