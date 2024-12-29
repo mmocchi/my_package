@@ -32,8 +32,10 @@ dev = [
 ]
 
 [tool.ruff]
+# 1行あたりの最大文字数を120文字に設定
 line-length = 120
 
+# 検査対象から除外するディレクトリやファイルを指定
 exclude = [
     ".venv",
     "venv",
@@ -42,33 +44,46 @@ exclude = [
 ]
 
 [tool.ruff.format]
+# docstring内のコードブロックをフォーマットする
 docstring-code-format = true
 
 [tool.ruff.lint]
+# すべてのルールを有効化
 select = ["ALL"]
+# 以下のルールは無視する
+# T201: print文の使用を禁止するルール
+# COM812: トレーリングカンマに関するルール
+# ISC001: 暗黙的文字列連結に関するルール
 ignore = [
     "T201",
-    "D203",
-    "D212",
     "COM812",
     "ISC001",
 ]
+# 自動修正を適用しないルール
+# F401: 未使用のインポート
+# F841: 未使用の変数
 unfixable = [
     "F401",
     "F841",
 ]
+# docstringのスタイルをGoogle形式に設定
 pydocstyle.convention = "google" 
 
 [tool.ruff.lint.per-file-ignores]
+# テストファイルに対する特別なルール除外設定
+# D: ドキュメント関連のすべてのルール
+# S101: assertの使用を許可
+# N802: 関数名の命名規則
+# ARG: 関数の引数に関するルール
 "tests/**/*.py" = [
     "D",
     "S101",
-    "ANN201",
     "N802",
     "ARG",
 ]
 
 [tool.ruff.lint.pylint]
+# 関数の最大引数数を6個に制限
 max-args = 6
 
 [tool.pytest.ini_options]
@@ -78,23 +93,36 @@ testpaths = ["tests",]
 
 [tool.mypy]
 # 基本設定
+# Python 3.13を対象としたタイプチェックを実行
 python_version = "3.13"
+# Any型を返す関数に警告を出す
 warn_return_any = true
+# 未使用の設定オプションがある場合に警告を出す
 warn_unused_configs = true
+# すべての関数とメソッドに型アノテーションを強制
 disallow_untyped_defs = true
+# 部分的な型アノテーションを禁止（すべてのパラメータと戻り値に型アノテーションが必要）
 disallow_incomplete_defs = true
+# 型アノテーションのない関数の本体もチェック
 check_untyped_defs = true
+# デコレータに型アノテーションを強制
 disallow_untyped_decorators = true
+# 暗黙的なOptional型を禁止
 no_implicit_optional = true
+# 不要な型キャストに警告を出す
 warn_redundant_casts = true
+# 不要な型チェック無視コメント（# type: ignore）に警告を出す
 warn_unused_ignores = true
+# 関数が値を返さない可能性がある場合に警告を出す
 warn_no_return = true
+# 到達不能なコードに警告を出す
 warn_unreachable = true
 
-# サードパーティライブラリの型チェック
+# サードパーティライブラリの型情報が見つからない場合でもエラーを出さない
 ignore_missing_imports = true
 
 # 特定のモジュールの設定
+# テストファイルに対しては型アノテーションの強制を無効化
 [[tool.mypy.overrides]]
 module = "tests.*"
 disallow_untyped_defs = false
